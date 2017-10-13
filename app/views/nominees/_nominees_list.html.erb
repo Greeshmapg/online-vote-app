@@ -1,0 +1,15 @@
+<% @nominees.each do|nominee| %>
+  <div class="card" style="max-width: 202px;">
+    <!-- Heading -->
+    <div class="card-body">
+      <h4 class="card-title"><%= nominee.name %></h4>
+    </div>
+ <!-- Image -->
+   <%= image_tag nominee.picture.url, size: "150x100"  %>
+  <!-- Text Content -->
+  <div class="card-body">
+  <h5> Total Votes :<%= nominee.vote_count(@category) %></h5>
+  <p class="card-text"><%= link_to 'Delete', nominee_path(nominee), method: :delete %></p>
+  </div>
+  </div>
+<% end %>

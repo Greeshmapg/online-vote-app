@@ -1,0 +1,51 @@
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+  <%= render 'layouts/header' %>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <%= render 'layouts/side_bar' %>
+
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+       Welcome <%= current_user.full_name %>
+      </h1>
+
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+      <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+
+   <%= render 'layouts/footer' %>
+  </footer>
+
+  <!-- Control Sidebar -->
+    <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+
+<!-- ./wrapper -->
+
+
