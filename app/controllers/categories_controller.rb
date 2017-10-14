@@ -7,8 +7,11 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @categories = Category.all
     if @category.save
-        flash[:success] = "New category created!!!"
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
@@ -18,34 +21,46 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    @category.update_attributes(category_params)
+    if @category.update_attributes(category_params)
+      redirect_to categories_path
+    end
   end
 
   def show
   end
 
   def index
-    @categories = Category.all
+    @categories = Category.all.order(created_at: :desc)
   end
 
   def destroy
     @category = Category.find(params[:id]).destroy
   end
 
-  def check_expiry
-    @categories = Category.all
-    @categories.each do |category|
-      if !category.end_date.future?
-        category.update(status: 'Expired')
-      end
-    end
+  def remove_nominee
+    @category = Category.find(params[:id])
+    @nominee = Nominee.find(params[:nominee_id])
+    @category.nominees.delete(@nominee)
   end
+
+  def result
+     @categories = Category.all.map{|u| [u.name,u.id]}
+  end
+
+  def winner_show
+       @category = Category.find_by(id: params[:category])
+       @winner = Vote.winner(@category)
+      respond_to do |format|
+        format.js
+      end
+  end
+
 
 
   private
 
   def category_params
-    params.require(:category).permit(:name,:end_date)
+    params.require(:category).permit(:name,:end_date,:description)
   end
 
 

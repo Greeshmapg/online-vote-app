@@ -1,71 +1,50 @@
-<div class="wrapper">
-
-  <!-- Main Header -->
+ <body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
   <header class="main-header">
   <%= render 'layouts/header' %>
   </header>
-  <!-- Left side column. contains the logo and sidebar -->
 
   <aside class="main-sidebar">
- <% if current_user.admin? %>
-    <!-- sidebar: style can be found in sidebar.less -->
-    <%= render 'layouts/side_bar' %>
-    <%else %>
-    <%= render 'layouts/user_side_bar' %>
-<% end %>
+  <%= render 'layouts/select_side_bar' %>
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
+
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+
     <section class="content-header">
       <h1>
        Welcome <%= current_user.full_name %>
       </h1>
-
     </section>
 
-    <!-- Main content -->
     <section class="content container-fluid">
-
       <div class="box-body">
         <% if current_user.admin? %>
         <% else %>
             <% @categories.each do|category| %>
-        <div class="card">
-          <div class="card-body">
-             <h4 class="card-title"><%= category.name %></h4>
-             <p class="card-text"><%= category.end_date.strftime("Ends on %B %d %Y at %T:%M %p") %><br></p>
-             <% if category.end_date.future? %>
-             <%= link_to 'Vote Now!!!!', voting_page_path(cat_id: category.id), class: "btn btn-primary" %>
-             <% else %>
-             <%= link_to 'Event Expired', voting_page_path(cat_id: category.id), class: "btn btn-danger" %>
-             <% end %>
-          </div>
-        </div>
-<% end %>
-        <% end %>
-
-
-      </div>
+              <div class="card">
+                <div class="card-body">
+                   <h4 class="card-title"><%= category.name %></h4>
+                   <p class="card-text"><%= category.end_date.strftime("Ends on %B %d %Y at %T:%M %p") %><br></p>
+                   <% if category.end_date.future? %>
+                   <%= link_to 'Vote Now!!!!', voting_page_path(cat_id: category.id), class: "btn btn-primary" %>
+                   <% else %>
+                   <%= link_to 'Event Expired', voting_page_path(cat_id: category.id), class: "btn btn-danger" %>
+                   <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+       </div>
 
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
 
-  <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
-
    <%= render 'layouts/footer' %>
   </footer>
 
-  <!-- Control Sidebar -->
-    <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
 
-<!-- ./wrapper -->
-
-
+</div>
+</body>

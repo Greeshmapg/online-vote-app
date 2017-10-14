@@ -5,11 +5,15 @@ class UsersController < ApplicationController
   end
 
   def index
-    @categories = Category.all
+    @categories = Category.all.order(created_at: :desc)
   end
 
   def invite
     @user = User.new
+  end
+
+  def history
+    @votes = current_user.votes
   end
 
   def voting_page
@@ -28,8 +32,13 @@ class UsersController < ApplicationController
   end
 
   def invite_user
-   @mail = params["user"]["email"]
-   UserNotifierMailer.invite_user(@mail).deliver
+    @mail = params["user"]["email"]
+    @user = User.find_by(email: @mail)
+    if @user.present?
+      UserNotifierMailer.invite_user(@mail).deliver
+    else
+      UserNotifierMailer.activate_user(@mail).deliver
+    end
   end
 
 

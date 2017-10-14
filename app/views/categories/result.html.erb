@@ -1,0 +1,57 @@
+ <body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+  <header class="main-header">
+    <%= render 'layouts/header'%>
+   </header>
+
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+  <%= render 'layouts/select_side_bar' %>
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+     Result
+      </h1>
+    </section>
+
+    <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">
+            you can check result here...
+          </h3>
+        </div>
+        <div class="box-body">
+          <div class="form-group has-feedback">
+            Select category
+            <%= select_tag(:category_id, options_for_select(@categories),include_blank:true)%>
+          </div>
+        </div>
+        <div class="box-body">
+          <div id="result_view">
+          </div>
+         </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <%= render 'layouts/footer'%>
+  </footer>
+</div>
+</body>
+
+<script>
+$('#category_id').change( function(){
+$.ajax({
+    url: "/winner_show", type: "GET", data : { category: $(this).val()}
+  });
+
+});
+</script>

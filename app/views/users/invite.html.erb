@@ -1,12 +1,12 @@
-<div class="wrapper">
-
+ <body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
   <header class="main-header">
     <%= render 'layouts/header'%>
    </header>
 
   <!-- Left side column. contains the sidebar -->
   <aside class="main-sidebar">
-    <%= render 'layouts/side_bar'%>
+  <%= render 'layouts/select_side_bar' %>
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -18,28 +18,16 @@
       </h1>
     </section>
 
-    <!-- Main content -->
     <section class="content">
-
-      <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">
             you can invite new members to this site...
           </h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-            <i class="fa fa-times"></i></button>
-          </div>
         </div>
         <div class="box-body">
-      <!--  content start here   -->
           <%= form_for(@user,url: invite_user_users_path, html: {id: "invite_form"}) do |f| %>
             <div class="form-group has-feedback">
-              <%#= label :Enter_email %>
               <%= f.email_field :email, placeholder: "Enter email id", class:"form-control" %>
             </div>
             <%= f.submit "Invite", class:"btn btn-primary btn-block btn-flat" %>
@@ -56,3 +44,4 @@
   </footer>
 
 </div>
+</body>

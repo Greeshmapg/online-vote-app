@@ -1,7 +1,8 @@
 class NomineesController < ApplicationController
 
   def index
-    @categories = Category.all.map{|u| [u.name,u.id]}
+    @category = Category.new
+    @categories = Category.all
   end
 
   def new
@@ -14,6 +15,7 @@ class NomineesController < ApplicationController
     @nominee = Nominee.new(nominee_params)
     @nominee.save
     @category.nominees << @nominee
+    redirect_to new_nominee_path
   end
 
   def nominee_list
@@ -44,10 +46,14 @@ class NomineesController < ApplicationController
    # byebug
   end
 
+  def destroy
+    byebug
+  end
+
   private
 
    def nominee_params
-    params.require(:nominee).permit(:name,:picture)
+    params.require(:nominee).permit(:name,:picture,:description)
   end
 
 end

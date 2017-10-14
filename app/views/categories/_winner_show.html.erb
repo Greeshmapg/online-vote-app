@@ -1,0 +1,32 @@
+
+
+
+
+<% if @category.status == "Expired" %>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+     <div class="col-md-4">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">WINNER !!!</h3>
+
+
+        </div>
+        <div class="box-body">
+         <%= image_tag @winner.picture.url, size: "150x100"  %>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+         <%= @winner.name%><br>
+         Total Votes : <%= @winner.vote_count(@category)%>
+        </div>
+        </div>
+        <div class="col-md-4">
+    </div>
+        <!-- /.box-footer-->
+      </div>
+      </div>
+<% else %>
+<h2> Voting Going On !!!</h2>
+<% end %>

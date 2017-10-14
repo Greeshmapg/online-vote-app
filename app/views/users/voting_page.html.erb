@@ -1,74 +1,82 @@
-<div class="wrapper">
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <header class="main-header">
+      <%= render 'layouts/header' %>
+    </header>
 
-  <header class="main-header">
-    <%= render 'layouts/header' %>
-  </header>
+    <aside class="main-sidebar">
+    <%= render 'layouts/select_side_bar' %>
+    </aside>
 
-  <aside class="main-sidebar">
-    <%= render 'layouts/side_bar' %>
-  </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Welcome <%= current_user.full_name %>
-      </h1>
-    </section>
+    <div class="content-wrapper">
 
-    <!-- Main content -->
-    <section class="content container-fluid">
-      <div class="box-body">
-        <div class="row">
-          <div class="col-md-8">
-            <% @nominees.each do|nominee| %>
-              <div class="card">
-                <%= image_tag nominee.picture.url, size: "150x100"  %>
-                <div class="card-body">
-                  <h4 class="card-title"><%= nominee.name %></h4>
-                  <% if !nominee.check_liked?(@user,@category) && @category.status == "Active" %>
-                     <%= link_to 'like',like_category_path(id: @category.id, nom_id: nominee.id),method: :post %>
+      <section class="content-header">
+        <h1>
+          Welcome <%= current_user.full_name %>
+        </h1>
+      </section>
+
+
+      <section class="content container-fluid">
+        <div class="box-body">
+          <div class="content-header">
+            <% if @user.check_liked?(@user,@category) && @category.status == "Active" %>
+              <h2>You are already voted for this category!!!</h2>
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <% @nominees.each do|nominee| %>
+                <div class="card">
+                  <%= image_tag nominee.picture.url, size: "150x100"  %>
+                  <div class="card-body">
+                    <h4 class="card-title"><%= nominee.name %></h4>
+                    <% if !@user.check_liked?(@user,@category) && @category.status == "Active" %>
+                       <%= link_to 'like',like_category_path(id: @category.id, nom_id: nominee.id),method: :post %>
+                    <% end %>
+                    <h4 class="card-title">Total Votes :<%= nominee.vote_count(@category) %></h4>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <div class="panel card">
+                <div class="card-img-top">
+                  <h4 class="card-title"> WINNER !!!</h4>
+                  <% if @category.status == "Expired" %>
+                    <%= image_tag @winner.picture.url, size: "150x100"  %>
+                  <% else %>
+                    <%= image_tag 'avatar.png', size: "150x100"  %>
                   <% end %>
                 </div>
+                <div class="card-block">
+                  <h4 class="card-title">
+                    <% if @category.status == "Expired" %>
+                      <%= @winner.name%>
+                      <h4 class="card-title">Total Votes : <%= @winner.vote_count(@category)%></h4>
+                    <% else %>
+                      <%= '???'%>
+                    <% end %>
+                  </h4>
+                </div>
               </div>
-            <% end %>
-          </div>
-          <div class="col-md-4">
-            <div class="panel card">
-              <div class="card-img-top">
-                <h4 class="card-title"> WINNER !!!</h4>
-                <% if @category.status == "Expired" %>
-                <%= image_tag @winner.picture.url, size: "150x100"  %>
-                 <% else %>
-                  <%= image_tag 'avatar.png', size: "150x100"  %>
-            <% end %>
-              </div>
-              <div class="card-block">
-                <h4 class="card-title"><%= @winner.name%></h4>
-                <h4 class="card-title">Total Votes : <%= @winner.vote_count(@category)%></h4>
-              </div>
-            </div>
+         </div>
+         </div>
+         </div>
+         </section>
 
-            <% if @category.status == "Expired" %>
-            <% else %>
-
-            <% end %>
-          </div>
+        <div id="like_show">
         </div>
-      </div>
 
-      <div id="like_show">
-      </div>
-    </section>
-  </div>
+    </div>
 
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-     <%= render 'layouts/footer' %>
-  </footer>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+       <%= render 'layouts/footer' %>
+    </footer>
 </div>
-
+</body>
 
 

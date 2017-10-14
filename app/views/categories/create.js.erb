@@ -1,0 +1,9 @@
+<% if @category.errors.any? %>
+  $('#error_div').html("<%= j render partial: 'category_error_partial' %>")
+<% else %>
+ $('#category_list').html("<%= j render partial: 'category_list' %>");
+
+<% end %>
+$('#category_form')[0].reset();
+
+$('#error_div').fadeOut(5000);

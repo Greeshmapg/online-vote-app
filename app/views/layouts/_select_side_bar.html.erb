@@ -1,0 +1,5 @@
+ <% if current_user.admin? %>
+    <%= render 'layouts/side_bar' %>
+    <%else %>
+    <%= render 'layouts/user_side_bar' %>
+<% end %>

@@ -10,7 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
+//= require rails-ujs
+//= require turbolinks
 //= require jquery/dist/jquery.min.js
 //= require jquery-ui/jquery-ui.min.js
 //= require jquery/dist/jquery.min.js
@@ -22,15 +23,6 @@
 //= require iCheck/icheck.min.js
 //= require PACE/pace.min.js
 //= require js/demo.js
-//= require rails-ujs
-//= require turbolinks
-//= require_tree .
 
 
-$( function() {
 
-
-$(document).on('turbolinks:load', function() {
-
-
-});

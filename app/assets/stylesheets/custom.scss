@@ -1,7 +1,11 @@
 .card {
-  float: left;
-  padding: 2%;
-}
-.card-title [
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  max-width: 300px;
+  min-width: 300px;
+  margin: auto;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   text-align: center;
-]
+  font-family: arial;
+}
