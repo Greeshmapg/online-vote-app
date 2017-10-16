@@ -12,6 +12,17 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      redirect_to user_path
+    end
+  end
+
   def history
     @votes = current_user.votes
   end
@@ -20,7 +31,7 @@ class UsersController < ApplicationController
     @category = Category.find(params[:cat_id])
     @nominees = @category.nominees
     @user = current_user
-    @winner = Vote.winner(@category)
+    @winners = Vote.winner(@category)
   end
 
   def new

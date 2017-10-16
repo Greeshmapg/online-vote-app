@@ -35,7 +35,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'carrierwave'
 gem "mini_magick"
-gem 'acts_as_votable', '~> 0.10.0'
+gem 'client_side_validations'
+gem 'jquery-rails'
+gem 'sendgrid'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

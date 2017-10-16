@@ -7,14 +7,19 @@ class Vote < ApplicationRecord
   def self.winner(category)
     @votes=Vote.all.where(category_id: category.id)
     votes = 0
+    @winners = []
     category.nominees.each do |nominee|
       temp =  @votes.all.where(nominee_id: nominee.id).count
       if temp >= votes
-        winner = nominee
         votes = temp
       end
-      return winner
     end
+    category.nominees.each do |nominee|
+      if @votes.all.where(nominee_id: nominee.id).count == votes
+        @winners << nominee
+      end
+    end
+      return @winners
   end
 
 

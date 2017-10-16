@@ -2,7 +2,7 @@ class Category < ApplicationRecord
 
   has_and_belongs_to_many :nominees
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :end_date, presence: true
   validates :status, presence: true
   validates :description, presence: true
@@ -28,5 +28,7 @@ class Category < ApplicationRecord
   def self.get_category_name(id)
     Category.find(id).name
   end
+
+
 
 end

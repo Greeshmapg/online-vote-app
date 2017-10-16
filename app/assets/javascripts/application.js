@@ -11,18 +11,20 @@
 // about supported directives.
 //
 //= require rails-ujs
+
 //= require turbolinks
 //= require jquery/dist/jquery.min.js
 //= require jquery-ui/jquery-ui.min.js
 //= require jquery/dist/jquery.min.js
 //= require bootstrap/dist/js/bootstrap.min.js
 //= require jquery-slimscroll/jquery.slimscroll.min.js
-//= require fastclick/lib/fastclick.js
+
 //= require js/adminlte.min.js
-//= require js/demo.js
+
 //= require iCheck/icheck.min.js
-//= require PACE/pace.min.js
-//= require js/demo.js
+
+//= require rails.validations
+
 
 
 

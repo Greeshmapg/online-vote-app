@@ -1,0 +1,83 @@
+  <body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+  <header class="main-header">
+  <%= render 'layouts/header' %>
+  </header>
+
+  <aside class="main-sidebar">
+  <%= render 'layouts/select_side_bar' %>
+  </aside>
+
+  <div class="content-wrapper" style="min-height:84vh;">
+    <section class="content-header">
+      <h1>
+        Welcome <%= current_user.full_name %>
+      </h1>
+    </section>
+
+    <section class="content container-fluid">
+
+
+    <!--     Edit Form -->
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Profile</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <%= form_for(@user, html: {id: "category_form"},) do |f| %>
+                <div id="error_div">
+                </div>
+                  <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
+
+                  <div class="col-sm-10">
+                    <%= f.text_field :first_name, class:"form-control", value: @user.first_name %>
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
+
+                  <div class="col-sm-10">
+                    <%= f.text_field :last_name, class:"form-control", value: @user.last_name %>
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Phone Number</label>
+
+                  <div class="col-sm-10">
+                    <%= f.text_field :phone_number,  class:"form-control", value: @user.phone_number %>
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label"></label>
+
+                  <div class="col-sm-10">
+
+                  </div>
+                </div>
+
+
+                <div>
+                  <%= f.submit "UPDATE PROFILE", class: "btn btn-primary btn-block btn-flat" %>
+                </div>
+              <% end %>
+          </div>
+
+
+
+
+
+
+
+    </section>
+
+  </div>
+
+  <footer class="main-footer">
+    <%= render 'layouts/footer' %>
+  </footer>
+</div>
+</body>
+
+

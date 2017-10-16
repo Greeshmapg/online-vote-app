@@ -3,11 +3,16 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    @categories = Category.all.order(created_at: :desc)
+    # respond_to do |format|
+    #     format.js
+    # end
+
   end
 
   def create
     @category = Category.new(category_params)
-    @categories = Category.all
+    @categories = Category.all.order(created_at: :desc)
     if @category.save
       respond_to do |format|
         format.js
@@ -49,10 +54,18 @@ class CategoriesController < ApplicationController
 
   def winner_show
        @category = Category.find_by(id: params[:category])
-       @winner = Vote.winner(@category)
+       @winners = Vote.winner(@category)
       respond_to do |format|
         format.js
       end
+  end
+
+  def check_category
+    @name = params[:data_value]
+    @category = Category.find_by(name: @name)
+    respond_to do |format|
+      format.js
+    end
   end
 
 

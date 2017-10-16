@@ -9,36 +9,14 @@
   </aside>
 
 
-  <div class="content-wrapper">
-
-    <section class="content-header">
-      <h1>
-       Welcome <%= current_user.full_name %>
-      </h1>
-    </section>
-
-    <section class="content container-fluid">
-      <div class="box-body">
-        <% if current_user.admin? %>
-        <% else %>
-            <% @categories.each do|category| %>
-              <div class="card">
-                <div class="card-body">
-                   <h4 class="card-title"><%= category.name %></h4>
-                   <p class="card-text"><%= category.end_date.strftime("Ends on %B %d %Y at %T:%M %p") %><br></p>
-                   <% if category.end_date.future? %>
-                   <%= link_to 'Vote Now!!!!', voting_page_path(cat_id: category.id), class: "btn btn-primary" %>
-                   <% else %>
-                   <%= link_to 'Event Expired', voting_page_path(cat_id: category.id), class: "btn btn-danger" %>
-                   <% end %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-       </div>
-
-    </section>
-    <!-- /.content -->
+  <div class="content-wrapper" style="min-height:84vh;">
+  <% if current_user.admin? %>
+  <div id= "admin_page">
+  </div>
+  <%= render 'admin_index'%>
+  <% else %>
+    <%= render 'users_index'%>
+  <% end %>
   </div>
 
   <footer class="main-footer">

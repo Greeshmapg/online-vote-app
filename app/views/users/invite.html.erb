@@ -10,7 +10,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="min-height:84vh;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -26,9 +26,9 @@
           </h3>
         </div>
         <div class="box-body">
-          <%= form_for(@user,url: invite_user_users_path, html: {id: "invite_form"}) do |f| %>
+          <%= form_for(@user,url: invite_user_users_path,validate: true, html: {id: "invite_form"}) do |f| %>
             <div class="form-group has-feedback">
-              <%= f.email_field :email, placeholder: "Enter email id", class:"form-control" %>
+              <%= f.email_field :email, placeholder: "Enter email id", class:"form-control", validate: true %>
             </div>
             <%= f.submit "Invite", class:"btn btn-primary btn-block btn-flat" %>
           <% end %>
@@ -38,8 +38,8 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
+<div class='clearfix'></div>
+  <footer class="main-footer" style=" min-height: 70vh%;";>
     <%= render 'layouts/footer'%>
   </footer>
 

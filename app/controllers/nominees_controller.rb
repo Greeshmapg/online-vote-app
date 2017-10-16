@@ -6,16 +6,28 @@ class NomineesController < ApplicationController
   end
 
   def new
-    @categories = Category.all.map{|u| [u.name,u.id]}
+    @categories = Category.all.where(status: 'Active').map{|u| [u.name,u.id]}
     @nominee = Nominee.new
   end
 
   def create
     @category = Category.find(params[:category_id])
     @nominee = Nominee.new(nominee_params)
-    @nominee.save
-    @category.nominees << @nominee
-    redirect_to new_nominee_path
+    if Nominee.where(name: params[:nominee][:name]).present?
+      if !@category.nominees.where(name: params[:nominee][:name]).present?
+        flash.now[:alert] = 'Nominee is added'
+        @category.nominees << @nominee
+      else
+      flash.now[:alert] = 'Nominee already exists in this category'
+      end
+    else
+      flash.now[:alert] = 'Nominee is added'
+      @nominee.save
+      @category.nominees << @nominee
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   def nominee_list
@@ -32,19 +44,16 @@ class NomineesController < ApplicationController
     @vote.nominee_id = params[:nom_id]
     @vote.category_id = params[:id]
     if @vote.save
-      flash[:success] = "Successfully voted !!! Thanks for voting!!!"
-      redirect_to root_path
-    else
-      redirect_to root_path
+      respond_to do |format|
+        format.js
+      end
     end
-
   end
 
-  def unlike
-    @nominee = Nominee.find(params[:id])
-   # @vote = Vote.find_by(user_id: current_user_id && nominee_id: @nominee.id)
-   # byebug
-  end
+  # def check_nominee
+  #   @category = Category.find_by(id: params[:category])
+  #   byebug
+  # end
 
   def destroy
     byebug

@@ -12,7 +12,7 @@
 
 
 
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="min-height:84vh;">
     <section class="content-header">
       <h1>
         View Categories
@@ -32,7 +32,6 @@
                 <th>Name</th>
                 <th>End Time</th>
                 <th>Description</th>
-                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -41,8 +40,11 @@
                   <td><%= category.name %></td>
                   <td><%= category.end_date %></td>
                   <td><%= category.description %></td>
-                  <td><%= category.status %></td>
+                  <% if category.active? %>
                   <td><%= link_to 'Edit', edit_category_path(category) %></td>
+                  <% else %>
+                  <td style="color:red;"><%= 'Expired' %></td>
+                  <% end %>
                   <td><%= link_to 'Delete', category_path(category), method: :delete %></td>
                 </tr>
               <% end %>

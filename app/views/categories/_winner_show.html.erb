@@ -13,15 +13,17 @@
 
 
         </div>
-        <div class="box-body">
-         <%= image_tag @winner.picture.url, size: "150x100"  %>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-         <%= @winner.name%><br>
-         Total Votes : <%= @winner.vote_count(@category)%>
-        </div>
-        </div>
+        <div class="row">
+                      <% @winners.each do |winner| %>
+                        <div class="col-md-6">
+                          <%= image_tag winner.picture.url, size: "150x100"  %>
+                          <div class="card-block">
+                            <h4 class="card-title"><%= winner.name%></h4>
+                            <h4 class="card-title">Total Votes : <%= winner.vote_count(@category)%></h4>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
         <div class="col-md-4">
     </div>
         <!-- /.box-footer-->

@@ -14,7 +14,7 @@
   <!-- =============================================== -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="min-height:84vh;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -33,14 +33,16 @@
            <div class="register-box-body">
              <div class="row">
                 <div class="col-md-7">
-                  <%= form_for(@nominee, html: {id: "nominee_form"}, url: nominees_path(id: :category_id)) do |f| %>
+                 <div id="flashDiv">
+                 </div>
+                  <%= form_for(@nominee, html: {id: "nominee_form"}, url: nominees_path(id: :category_id), validate: true, remote: true) do |f| %>
                     <%#= render 'category_error' %>
                     <div class="form-group has-feedback">
                       Select category
-                      <%= select_tag(:category_id, options_for_select(@categories),include_blank:true)%>
+                      <%= select_tag(:category_id, options_for_select(@categories))%>
                     </div>
                     <div class="form-group has-feedback">
-                      <%= f.text_field :name, placeholder: "Nominee name", class:"form-control" %>
+                      <%= f.text_field :name, placeholder: "Nominee name", id: "nominee_name", class:"form-control", id: "nominee_name" %>
                     </div>
                     <div class="form-group has-feedback">
                       <%= f.file_field :picture%>
@@ -54,8 +56,11 @@
                   <% end %>
                 </div>
                 <div class="col-md-5">
+
                 </div>
               </div>
+              <div id="nominees">
+          </div>
             </div>
           </div>
         </div>
@@ -67,3 +72,22 @@
   </footer>
 </div>
 </body>
+
+<!-- <script>
+$('#nominee_name').change( function(){
+  var name = $(this).val();
+  var category =$('#category_id').val();
+  var result = $.ajax({
+    url: "/check_nominee", type: "GET", data : { data_value: name, category: category}
+  });
+});
+
+</script> -->
+<script>
+$('#category_id').change( function(){
+$.ajax({
+    url: "/nominee_list", type: "GET", data : { category: $(this).val()}
+  });
+
+});
+</script>

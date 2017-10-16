@@ -1,0 +1,7 @@
+<% if @category.present? %>
+
+ $('#category_error').html("<%= j render partial: 'category_error_message' %>");
+
+<% end %>
+
+$('#category_error').fadeOut(5000);

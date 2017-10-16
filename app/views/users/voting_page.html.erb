@@ -8,8 +8,9 @@
     <%= render 'layouts/select_side_bar' %>
     </aside>
 
-
-    <div class="content-wrapper">
+        <div id="vote_modal">
+        </div>
+    <div class="content-wrapper" style="min-height:84vh;">
 
       <section class="content-header">
         <h1>
@@ -18,7 +19,11 @@
       </section>
 
 
+
+
       <section class="content container-fluid">
+        <h3><%= @category.name %></h3>
+        <h5><%= @category.description %></h5>
         <div class="box-body">
           <div class="content-header">
             <% if @user.check_liked?(@user,@category) && @category.status == "Active" %>
@@ -33,9 +38,9 @@
                   <div class="card-body">
                     <h4 class="card-title"><%= nominee.name %></h4>
                     <% if !@user.check_liked?(@user,@category) && @category.status == "Active" %>
-                       <%= link_to 'like',like_category_path(id: @category.id, nom_id: nominee.id),method: :post %>
+                       <%= link_to 'Vote Now',like_category_path(id: @category.id, nom_id: nominee.id),method: :post, remote: true, "data-toggle" => "modal", 'data-target' => '#vote_modal', class: "btn btn-success" %>
                     <% end %>
-                    <h4 class="card-title">Total Votes :<%= nominee.vote_count(@category) %></h4>
+                    <h4 class="card-title"> Votes :<%= nominee.vote_count(@category) %></h4>
                   </div>
                 </div>
               <% end %>
@@ -45,29 +50,38 @@
                 <div class="card-img-top">
                   <h4 class="card-title"> WINNER !!!</h4>
                   <% if @category.status == "Expired" %>
-                    <%= image_tag @winner.picture.url, size: "150x100"  %>
+
+                    <div class="row">
+                      <% @winners.each do |winner| %>
+                        <div class="col-md-6">
+                          <%= image_tag winner.picture.url, size: "150x100"  %>
+                          <div class="card-block">
+                            <h4 class="card-title"><%= winner.name%></h4>
+                            <h4 class="card-title">Total Votes : <%= winner.vote_count(@category)%></h4>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
                   <% else %>
-                    <%= image_tag 'avatar.png', size: "150x100"  %>
+                    <div class="row">
+                       <%= image_tag 'avatar.png', size: "150x100"  %>
+                      <div class="card-block">
+                        <h4 class="card-title"><%= '???'%></h4>
+                      </div>
+                    </div>
                   <% end %>
                 </div>
-                <div class="card-block">
-                  <h4 class="card-title">
-                    <% if @category.status == "Expired" %>
-                      <%= @winner.name%>
-                      <h4 class="card-title">Total Votes : <%= @winner.vote_count(@category)%></h4>
-                    <% else %>
-                      <%= '???'%>
-                    <% end %>
-                  </h4>
-                </div>
               </div>
-         </div>
-         </div>
-         </div>
-         </section>
-
-        <div id="like_show">
+            </div>
+          </div>
         </div>
+      </section>
+
+
+
+
+
+
 
     </div>
 

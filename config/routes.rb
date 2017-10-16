@@ -31,6 +31,8 @@ end
 
 get 'nominee_list' ,to: "nominees#nominee_list"
 get 'winner_show', to: "categories#winner_show"
+get 'check_category', to: "categories#check_category"
+get 'check_nominee', to: "nominees#check_nominee"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
