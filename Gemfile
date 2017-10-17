@@ -38,6 +38,8 @@ gem "mini_magick"
 gem 'client_side_validations'
 gem 'jquery-rails'
 gem 'sendgrid'
+gem 'chartkick'
+gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

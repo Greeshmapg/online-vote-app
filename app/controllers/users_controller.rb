@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @categories = Category.all.order(created_at: :desc)
+    @categories_all = Category.all.order(created_at: :desc).page params[:page]
   end
 
   def invite

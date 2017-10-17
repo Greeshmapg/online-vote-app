@@ -6,7 +6,7 @@ class Category < ApplicationRecord
   validates :end_date, presence: true
   validates :status, presence: true
   validates :description, presence: true
-
+  paginates_per 2
 
  def active?
     if self.status == 'Active'
