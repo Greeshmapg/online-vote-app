@@ -3,11 +3,6 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    @categories = Category.all.order(created_at: :desc)
-    # respond_to do |format|
-    #     format.js
-    # end
-
   end
 
   def create
@@ -40,12 +35,20 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find(params[:id]).destroy
+    @categories = Category.all.order(created_at: :desc)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def remove_nominee
     @category = Category.find(params[:id])
     @nominee = Nominee.find(params[:nominee_id])
     @category.nominees.delete(@nominee)
+    @nominees = @category.nominees
+     respond_to do |format|
+      format.js
+    end
   end
 
   def result
@@ -53,11 +56,11 @@ class CategoriesController < ApplicationController
   end
 
   def winner_show
-       @category = Category.find_by(id: params[:category])
-       @winners = Vote.winner(@category)
-      respond_to do |format|
-        format.js
-      end
+    @category = Category.find_by(id: params[:category])
+    @winners = Vote.winner(@category)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def check_category

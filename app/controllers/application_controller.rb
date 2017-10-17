@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 before_action :configure_sign_up_params, if: :devise_controller?
 before_action :configure_account_update_params, if: :devise_controller?
 
+
 def check_expiry
     @categories = Category.all
     @categories.each do |category|
@@ -20,8 +21,10 @@ protected
 def configure_sign_up_params
   devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation, :phone_number, :role_id])
 end
+
 def configure_account_update_params
-  devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :email, :password, :password_confirmation, :phone_number, :role_id])
+  devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation, :phone_number, :role_id])
 end
+
 
 end

@@ -3,6 +3,8 @@ class Vote < ApplicationRecord
   belongs_to :user
   belongs_to :nominee
 
+  validates_uniqueness_of :nominee_id, scope: :user_id
+
 
   def self.winner(category)
     @votes=Vote.all.where(category_id: category.id)

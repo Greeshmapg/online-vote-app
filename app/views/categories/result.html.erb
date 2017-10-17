@@ -28,7 +28,7 @@
         <div class="box-body">
           <div class="form-group has-feedback">
             Select category
-            <%= select_tag(:category_id, options_for_select(@categories),include_blank:true)%>
+            <%= select_tag(:category_id, options_for_select(@categories),include_blank:true, class: "form-control select2")%>
           </div>
         </div>
         <div class="box-body">

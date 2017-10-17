@@ -1,83 +1,73 @@
-  <body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
-  <header class="main-header">
-  <%= render 'layouts/header' %>
-  </header>
+    <header class="main-header">
+    <%= render 'layouts/header' %>
+    </header>
 
-  <aside class="main-sidebar">
-  <%= render 'layouts/select_side_bar' %>
-  </aside>
+    <aside class="main-sidebar">
+    <%= render 'layouts/select_side_bar' %>
+    </aside>
 
-  <div class="content-wrapper" style="min-height:84vh;">
-    <section class="content-header">
-      <h1>
-        Welcome <%= current_user.full_name %>
-      </h1>
-    </section>
+    <div class="content-wrapper" style="min-height:84vh;">
+      <section class="content-header">
+        <h1>
+          Welcome <%= current_user.full_name %>
+        </h1>
+      </section>
 
-    <section class="content container-fluid">
-
-
-    <!--     Edit Form -->
-<div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Profile</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <%= form_for(@user, html: {id: "category_form"},) do |f| %>
-                <div id="error_div">
-                </div>
-                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
-
-                  <div class="col-sm-10">
-                    <%= f.text_field :first_name, class:"form-control", value: @user.first_name %>
-                  </div>
-                </div>
-                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
-
-                  <div class="col-sm-10">
-                    <%= f.text_field :last_name, class:"form-control", value: @user.last_name %>
-                  </div>
-                </div>
-                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Phone Number</label>
-
-                  <div class="col-sm-10">
-                    <%= f.text_field :phone_number,  class:"form-control", value: @user.phone_number %>
-                  </div>
-                </div>
-                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label"></label>
-
-                  <div class="col-sm-10">
-
-                  </div>
-                </div>
-
-
-                <div>
-                  <%= f.submit "UPDATE PROFILE", class: "btn btn-primary btn-block btn-flat" %>
-                </div>
-              <% end %>
+      <section class="content">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">You can edit your profile here...</h3>
           </div>
+          <div class="box-body">
+            <div class="row">
+             <div class="col-md-3">
+            </div>
+             <div class="col-md-6">
+              <div class="register-box-body">
+                <%= form_for(@user, html: {id: "category_form"}, validate: true) do |f| %>
+                  <div id="error_div">
+                  </div>
+                  <div class="form-group has-feedback">
+                  <label for="inputEmail3" class="col-sm-6 control-label">First Name</label>
+                    <%= f.text_field :first_name, placeholder: "First name", class:"form-control", value: @user.first_name %>
+                  </div>
+                  <div class="form-group has-feedback">
+                  <label for="inputEmail3" class="col-sm-6 control-label">Last Name</label>
+                    <%= f.text_field :lat_name, placeholder: "Last name", class:"form-control", value: @user.last_name %>
+                  </div>
+                  <div class="form-group has-feedback">
+                  <label for="inputEmail3" class="col-sm-6 control-label">Phone Number</label>
+                    <%= f.text_field :phone_number, placeholder: "Phone number", class:"form-control", value: @user.phone_number %>
+                  </div>
 
+                  <div>
+                  <div class="row">
+                    <div class="col-md-6">
+                  <%= link_to "CANCEL",user_path, class: "btn btn-primary btn-block btn-flat" %>
+                  </div>
+                   <div class="col-md-6">
+                    <%= f.submit "UPDATE PROFILE", class: "btn btn-primary btn-block btn-flat" %>
+                    </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+            </div>
+          </div>
+      </section>
+    </div>
 
-
-
-
-
-
-    </section>
+    <footer class="main-footer">
+      <%= render 'layouts/footer' %>
+    </footer>
 
   </div>
-
-  <footer class="main-footer">
-    <%= render 'layouts/footer' %>
-  </footer>
-</div>
 </body>
 
 

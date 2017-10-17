@@ -1,28 +1,28 @@
  <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
-  <header class="main-header">
-  <%= render 'layouts/header' %>
-  </header>
+    <header class="main-header">
+    <%= render 'layouts/header' %>
+    </header>
 
-  <aside class="main-sidebar">
-  <%= render 'layouts/select_side_bar' %>
-  </aside>
+    <aside class="main-sidebar">
+    <%= render 'layouts/select_side_bar' %>
+    </aside>
 
 
-  <div class="content-wrapper" style="min-height:84vh;">
-  <% if current_user.admin? %>
-  <div id= "admin_page">
+    <div class="content-wrapper" style="min-height:84vh;">
+    <% if current_user.admin? %>
+    <div id= "admin_page">
+    </div>
+    <%= render 'admin_index'%>
+    <% else %>
+      <%= render 'users_index'%>
+    <% end %>
+    </div>
+
+    <footer class="main-footer">
+     <%= render 'layouts/footer' %>
+    </footer>
+
+
   </div>
-  <%= render 'admin_index'%>
-  <% else %>
-    <%= render 'users_index'%>
-  <% end %>
-  </div>
-
-  <footer class="main-footer">
-   <%= render 'layouts/footer' %>
-  </footer>
-
-
-</div>
 </body>

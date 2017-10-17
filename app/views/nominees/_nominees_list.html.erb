@@ -29,7 +29,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-               <p class="card-text"><%= link_to 'Delete', remove_nominee_category_path(@category,nominee_id: nominee.id), method: :delete,  data: { confirm: "You sure?" } %></p>
+               <p class="card-text"><%= link_to 'Delete', remove_nominee_category_path(@category,nominee_id: nominee.id), method: :delete,  data: { confirm: "You sure?" }, remote: true %></p>
               </div>
             </form>
           </div>

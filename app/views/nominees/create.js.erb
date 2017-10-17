@@ -1,3 +1,10 @@
 $('#nominee_form')[0].reset();
 $('#flashDiv').html("<%= j render partial: 'layouts/flash_message' %>");
  $("#flashDiv" ).fadeOut(5000);
+$('#nominees').html("<%= j render partial: 'nominees_list' %>");
+<% if flash.any? %>
+  <% flash.each do |message_type, message| %>
+  alert(message_type);
+  <% end %>
+<% end %>
+

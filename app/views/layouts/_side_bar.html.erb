@@ -1,26 +1,25 @@
 <section class="sidebar">
 
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<%= asset_path 'user2-160x160.jpg' %>" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><%=current_user.full_name%></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
+  <div class="user-panel">
+    <div class="pull-left image">
+      <img src="<%= asset_path 'user2-160x160.jpg' %>" class="img-circle" alt="User Image">
+    </div>
+    <div class="pull-left info">
+      <p><%=current_user.full_name%></p>
+      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+  </div>
 
  <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+    <li><%= link_to 'Add Category',  new_category_path %></li>
+    <li><%= link_to 'View Categories', categories_path %></li>
+    <li><%= link_to 'Add Nominees',  new_nominee_path %></li>
+    <li><%= link_to 'View Nominees', nominees_path %></li>
+    <li><%= link_to 'Invite Users',  invite_path %></li>
+    <li><%= link_to 'Result',  result_path %></li>
+  </ul>
 
-         <li><%= link_to 'Add Category',  new_category_path %></li>
-            <li><%= link_to 'View Categories', categories_path %></li>
-            <li><%= link_to 'Add Nominees',  new_nominee_path %></li>
-            <li><%= link_to 'View Nominees', nominees_path %></li>
-            <li><%= link_to 'Invite Users',  invite_path %></li>
-            <li><%= link_to 'Result',  result_path %></li>
-        </ul>
-    </section>
+</section>
 
 
 

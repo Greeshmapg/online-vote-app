@@ -9,6 +9,7 @@ class Nominee < ApplicationRecord
   validates :picture, presence: true
   validates :description, presence: true
 
+
    def vote_count(category)
     @votes=Vote.all.where(category_id: category.id)
     @votes.all.where(nominee_id: self.id).count

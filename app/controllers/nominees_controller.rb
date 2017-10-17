@@ -13,6 +13,7 @@ class NomineesController < ApplicationController
   def create
     @category = Category.find(params[:category_id])
     @nominee = Nominee.new(nominee_params)
+    @nominees = @category.nominees
     if Nominee.where(name: params[:nominee][:name]).present?
       if !@category.nominees.where(name: params[:nominee][:name]).present?
         flash.now[:alert] = 'Nominee is added'
@@ -55,8 +56,8 @@ class NomineesController < ApplicationController
   #   byebug
   # end
 
-  def destroy
-    byebug
+  def profile
+    @nominee = Nominee.find(params[:id])
   end
 
   private

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(account_update_params)
       redirect_to user_path
     end
   end
@@ -32,14 +32,6 @@ class UsersController < ApplicationController
     @nominees = @category.nominees
     @user = current_user
     @winners = Vote.winner(@category)
-  end
-
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user
   end
 
   def invite_user
@@ -58,6 +50,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email)
   end
   def sign_up_params
+    params.require(:user).permit(:first_name, :email, :password,
+                            :password_confirmation,:last_name,:phone_number)
+  end
+  def account_update_params
     params.require(:user).permit(:first_name, :email, :password,
                             :password_confirmation,:last_name,:phone_number)
   end

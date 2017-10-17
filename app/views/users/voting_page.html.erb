@@ -1,3 +1,4 @@
+
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
     <header class="main-header">
@@ -8,8 +9,6 @@
     <%= render 'layouts/select_side_bar' %>
     </aside>
 
-        <div id="vote_modal">
-        </div>
     <div class="content-wrapper" style="min-height:84vh;">
 
       <section class="content-header">
@@ -18,15 +17,12 @@
         </h1>
       </section>
 
-
-
-
       <section class="content container-fluid">
         <h3><%= @category.name %></h3>
         <h5><%= @category.description %></h5>
         <div class="box-body">
           <div class="content-header">
-            <% if @user.check_liked?(@user,@category) && @category.status == "Active" %>
+            <% if @user.check_liked?(@user,@category) && @category.active? %>
               <h2>You are already voted for this category!!!</h2>
             <% end %>
           </div>
@@ -34,23 +30,24 @@
             <div class="col-md-8">
               <% @nominees.each do|nominee| %>
                 <div class="card">
-                  <%= image_tag nominee.picture.url, size: "150x100"  %>
+                   <%= link_to image_tag( nominee.picture.url, size: "150x100"), profile_path(id: nominee.id) %>
                   <div class="card-body">
                     <h4 class="card-title"><%= nominee.name %></h4>
-                    <% if !@user.check_liked?(@user,@category) && @category.status == "Active" %>
-                       <%= link_to 'Vote Now',like_category_path(id: @category.id, nom_id: nominee.id),method: :post, remote: true, "data-toggle" => "modal", 'data-target' => '#vote_modal', class: "btn btn-success" %>
+                    <% if !@user.check_liked?(@user,@category) && @category.active? %>
+                       <%= link_to 'Vote Now',like_category_path(id: @category.id, nom_id: nominee.id), { method: :post,remote: true, class: "btn btn-success", 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
                     <% end %>
                     <h4 class="card-title"> Votes :<%= nominee.vote_count(@category) %></h4>
                   </div>
                 </div>
               <% end %>
             </div>
+             <div id="modal-window" class=" modal modal-dialog" role="dialog" tabindex="-1"  aria-labelledby="myModalLabel" aria-hidden="true">
+      </div>
             <div class="col-md-4">
               <div class="panel card">
                 <div class="card-img-top">
                   <h4 class="card-title"> WINNER !!!</h4>
-                  <% if @category.status == "Expired" %>
-
+                  <% if !@category.active? %>
                     <div class="row">
                       <% @winners.each do |winner| %>
                         <div class="col-md-6">
@@ -77,20 +74,14 @@
         </div>
       </section>
 
-
-
-
-
-
-
     </div>
 
-
-    <!-- Main Footer -->
     <footer class="main-footer">
        <%= render 'layouts/footer' %>
     </footer>
-</div>
+
+  </div>
 </body>
+
 
 
