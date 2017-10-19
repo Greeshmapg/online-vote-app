@@ -12,12 +12,15 @@
     <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
 
   </head>
+    <% if !user_signed_in? %>
+    <%= render 'layouts/outer_header'%>
+  <% end %>
 
-
-  <%#= render 'layouts/header'%>
-   <%#= render 'layouts/side_bar'%>
-<%#= render 'layouts/flash_message' %>
     <%= yield %>
-       <%#= render 'layouts/footer'%>
 
+
+
+  <% if !user_signed_in? %>
+    <%= render 'layouts/outer_footer'%>
+  <% end %>
 </html>

@@ -1,83 +1,66 @@
-  <body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
-  <header class="main-header">
-  <%= render 'layouts/header' %>
-  </header>
+    <header class="main-header">
+    <%= render 'layouts/header' %>
+    </header>
 
-  <aside class="main-sidebar">
-  <%= render 'layouts/select_side_bar' %>
-  </aside>
+    <aside class="main-sidebar">
+    <%= render 'layouts/select_side_bar' %>
+    </aside>
 
-  <div class="content-wrapper" style="min-height:84vh;">
-    <section class="content-header">
-      <h1>
-        Welcome <%= current_user.full_name %>
-      </h1>
-    </section>
+    <div class="content-wrapper" style="min-height:84vh;">
+      <section class="content-header">
+        <h1>
+          Welcome <%= current_user.full_name %>
+        </h1>
+      </section>
 
-    <section class="content container-fluid">
+      <section class="content container-fluid">
 
-
-    <!--     Edit Form -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title"><%= @nominee.name %></h3>
-            </div>
-
-
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title"><%= @nominee.name %></h3>
           </div>
+        </div>
 
-<section class="content">
-      <div class="row">
-        <div class="col-md-6">
-          <!-- AREA CHART -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">About</h3>
-
-
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <%= @nominee.description %>
-              </div>
-
-            </div>
-            <!-- /.box-body -->
-          </div>
-
-</div>
-<div class="col-md-6">
-          <!-- AREA CHART -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title"></h3>
-
-
-            </div>
-            <div class="box-body">
-              <div class="chart">
-                <%= image_tag @nominee.picture.url, size: "500x500"  %>
+        <section class="content">
+          <div class="row">
+            <div class="col-md-6">
+             <!-- AREA CHART -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">About</h3>
+                  </div>
+                  <div class="box-body">
+                  <div class="chart">
+                    <%= @nominee.description %>
+                  </div>
+                </div>
               </div>
             </div>
-            <!-- /.box-body -->
+            <div class="col-md-6">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <%= image_tag @nominee.picture.url, size: "500x500"  %>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
 
-</div>
+      </section>
 
-</div>
-</section>
+    </div>
 
-
-
-    </section>
-
+    <footer class="main-footer">
+      <%= render 'layouts/footer' %>
+    </footer>
   </div>
-
-  <footer class="main-footer">
-    <%= render 'layouts/footer' %>
-  </footer>
-</div>
 </body>
 
 

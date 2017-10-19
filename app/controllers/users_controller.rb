@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    authorize @user
   end
 
   def update
@@ -38,10 +39,16 @@ class UsersController < ApplicationController
   def invite_user
     @mail = params["user"]["email"]
     @user = User.find_by(email: @mail)
-    if @user.present?
-      UserNotifierMailer.invite_user(@mail).deliver
-    else
-      UserNotifierMailer.activate_user(@mail).deliver
+    respond_to do |format|
+      if @user.present?
+        UserNotifierMailer.invite_user(@mail).deliver
+        flash.now[:alert] = 'Mail sent successfully!!!'
+        format.js
+      else
+        UserNotifierMailer.activate_user(@mail).deliver
+        flash.now[:alert] = 'Mail sent successfully!!!'
+        format.js
+      end
     end
   end
 

@@ -1,73 +1,73 @@
- <body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
-   <header class="main-header">
-    <%= render 'layouts/header'%>
-   </header>
+    <header class="main-header">
+      <%= render 'layouts/header'%>
+    </header>
 
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <%= render 'layouts/side_bar'%>
-  </aside>
+    <aside class="main-sidebar">
+      <%= render 'layouts/side_bar'%>
+    </aside>
 
 
-  <div class="content-wrapper" style="min-height:84vh;">
-    <section class="content-header">
-      <h1>
-        Add new Category
-      </h1>
-    </section>
+    <div class="content-wrapper" style="min-height:84vh;">
+      <section class="content-header">
+        <h1>
+          Add new Category
+        </h1>
+      </section>
 
-    <section class="content">
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">You can add new category here...</h3>
-        </div>
-        <div class="box-body">
-          <div class="register-box-body">
-            <div class="row">
-              <div class="col-md-7">
-                <div id="error_div">
+      <section class="content">
+        <div class="box">
+          <div class="box-header with-border">
+            <h3 class="box-title">You can add new category here...</h3>
+          </div>
+          <div class="box-body">
+            <div class="register-box-body">
+              <div class="row">
+                <div class="col-md-7">
+                  <div id="error_div">
 
+                  </div>
+                  <%= form_for @category,url: categories_path, method: :post, html: {id: "category_form"}, validate: true, remote: true do |f| %>
+                    <%#= render 'category_error' %>
+                    <div class="form-group has-feedback">
+                      <%= f.text_field :name, placeholder: "Category name", class:"form-control", id: 'category_name' %>
+                    </div>
+                     <div id="category_error"></div>
+                    <div class="form-group has-feedback">
+                      <%= f.datetime_select :end_date, id: "datepicker", placeholder: "End date"%>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <%= f.text_area :description, size: "24x6", class:"form-control", placeholder: "Description"%>
+                    </div>
+                    <div>
+                      <%= f.submit "ADD CATEGORY", class: "btn btn-primary btn-block btn-flat" %>
+                    </div>
+                  <% end %>
                 </div>
-                <%= form_for @category,url: categories_path, method: :post, html: {id: "category_form"}, validate: true, remote: true do |f| %>
-                  <%#= render 'category_error' %>
-                  <div class="form-group has-feedback">
-                    <%= f.text_field :name, placeholder: "Category name", class:"form-control", id: 'category_name' %>
-                  </div>
-                   <div id="category_error"></div>
-                  <div class="form-group has-feedback">
-                    <%= f.datetime_select :end_date, class: "datepicker", placeholder: "End date"%>
-                  </div>
-                  <div class="form-group has-feedback">
-                    <%= f.text_area :description, size: "24x6", class:"form-control", placeholder: "Description"%>
-                  </div>
-                  <div>
-                    <%= f.submit "ADD CATEGORY", class: "btn btn-primary btn-block btn-flat" %>
-                  </div>
-                <% end %>
-              </div>
-              <div class="col-md-5">
-                <div class="card" style="max-width: 20rem;">
-                  <div class="card-header">
-                    <h2>Category List</h2>
-                  </div>
-                  <div id = "category_list">
-                  <%= render 'category_list' %>
+                <div class="col-md-5">
+                  <div class="card" style="max-width: 20rem;">
+                    <div class="card-header">
+                      <h2>Category List</h2>
+                    </div>
+                    <div id = "category_list">
+                      <%= render 'category_list' %>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
+      </section>
+    </div>
     <footer class="main-footer">
       <%= render 'layouts/footer'%>
     </footer>
-</div>
+  </div>
 </body>
 
 <script>
@@ -78,5 +78,12 @@ $('#category_name').change( function(){
     url: "/check_category", type: "GET", data : { data_value: name}
   });
 });
+
+
+$( "#datepicker" ).datepicker({
+      dateFormat: 'dd-mm-yy',
+      changeMonth: true,
+      changeYear: true,
+      yearRange: '1990:' + (new Date).getFullYear()    });
 
 </script>

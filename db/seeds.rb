@@ -11,8 +11,10 @@ User.create!(first_name:  "Admin",
              phone_number:"9995368541",
              email: "admin@gmail.com",
              password:              "admin123",
-             password_confirmation: "admin123"
+             password_confirmation: "admin123",
+             role_id: '1'
+
              )
 
-# Role.create!(name: "user"
+# Role.create!(name: "admin"
 #              )

@@ -1,9 +1,10 @@
 <% if @category.errors.any? %>
-  $('#error_div').html("<%= j render partial: 'category_error_partial' %>")
+  $('#error_div').html("<%= j render partial: 'category_error' %>")
 <% else %>
- $('#category_list').html("<%= j render partial: 'category_list' %>");
-
+  $('#category_list').html("<%= j render partial: 'category_list' %>");
 <% end %>
 $('#category_form')[0].reset();
 
 $('#error_div').fadeOut(5000);
+$('#flashDiv').html("<%= j render partial: 'layouts/flash_message' %>");
+$("#flashDiv" ).fadeOut(5000);

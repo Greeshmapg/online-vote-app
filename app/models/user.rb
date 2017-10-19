@@ -9,13 +9,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 
-def check_liked?(user,category)
+  def check_liked?(user,category)
     @votes = Vote.all.where(category_id: category.id)
     if @votes.find_by(user_id: user.id).present?
-        return true
-      else
-        return false
-      end
+      return true
+    else
+      return false
+    end
   end
 
   def admin?

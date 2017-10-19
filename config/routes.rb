@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'check_category', to: "categories#check_category"
   get 'check_nominee', to: "nominees#check_nominee"
   get 'profile', to:"nominees#profile"
+  get 'pdf_result', to:"categories#pdf_result"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

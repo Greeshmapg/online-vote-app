@@ -40,6 +40,11 @@ gem 'jquery-rails'
 gem 'sendgrid'
 gem 'chartkick'
 gem 'kaminari'
+gem 'rufus-scheduler'
+gem "pundit"
+gem 'prawn'
+gem 'responders'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,20 +1,11 @@
 <section class="content container-fluid">
   <div class="box-body">
-  <%#= image_tag 'voting-bg.png' %>
-   <% @categories_all.each do|category| %>
-
-
-  <!-- Line Chart - Single Series -->
-  <div class="col-xs-6">
-    <h3><%= category.name %></h3>
-
-     <%= pie_chart Vote.where(category_id: category.id).group(:nominee_id).count, discrete: true %>
-  </div>
-
-
-
-
-<% end %>
+    <% @categories_all.each do|category| %>
+      <div class="col-xs-6">
+        <h3><%= category.name %></h3>
+        <%= pie_chart Vote.where(category_id: category.id).group(:nominee_id).count, discrete: false %>
+      </div>
+    <% end %>
   </div>
   <%= paginate @categories_all %>
 </section>

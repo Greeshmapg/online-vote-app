@@ -2,6 +2,7 @@ class Vote < ApplicationRecord
 
   belongs_to :user
   belongs_to :nominee
+  belongs_to :category
 
   validates_uniqueness_of :nominee_id, scope: :user_id
 
@@ -21,7 +22,7 @@ class Vote < ApplicationRecord
         @winners << nominee
       end
     end
-      return @winners
+    return @winners
   end
 
 

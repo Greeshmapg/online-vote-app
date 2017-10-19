@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    @categories = Category.all.order(created_at: :desc)
   end
 
   def create
@@ -22,6 +23,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
+      flash.now[:alert] = 'category updated'
       redirect_to categories_path
     end
   end
@@ -71,6 +73,20 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def pdf_result
+    @categories = Category.all.where(status: 'Expired')
+
+    respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = Winners_Pdf.new(@categories)
+          send_data pdf.render,
+            filename: "order",
+            type: 'application/pdf',
+            disposition: 'inline'
+        end
+      end
+  end
 
 
   private
@@ -82,3 +98,9 @@ class CategoriesController < ApplicationController
 
 
 end
+
+
+
+
+
+
